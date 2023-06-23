@@ -16,6 +16,9 @@ public class RestVerticle extends AbstractVerticle {
     router.post("/analyze")
       .handler(this::analyzeAndSave);
 
+    vertx.deployVerticle(new StartupVerticle());
+    vertx.deployVerticle(new PeriodicFileUpdateVerticle());
+
     vertx.createHttpServer()
       .requestHandler(router)
       .listen(config().getInteger("http.port", 8080), result -> {
@@ -31,12 +34,11 @@ public class RestVerticle extends AbstractVerticle {
     routingContext.request().bodyHandler(bodyHandler -> {
         var body = (JsonObject) bodyHandler.toJson();
         var text = body.getString("text");
-        AnalysisService.analyzeAndSave(vertx, text).onSuccess(analysis ->
-          routingContext.response()
-            .putHeader("content-type", "application/json")
-            .setStatusCode(200)
-            .end(Json.encodePrettily(analysis))
-        );
+        var analysis = AnalysisService.analyzeAndSave(text);
+        routingContext.response()
+          .putHeader("content-type", "application/json")
+          .setStatusCode(200)
+          .end(Json.encodePrettily(analysis));
       }
     );
   }

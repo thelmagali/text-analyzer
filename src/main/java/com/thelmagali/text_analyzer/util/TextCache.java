@@ -1,9 +1,10 @@
 package com.thelmagali.text_analyzer.util;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TextCache {
   private static final TextCache INSTANCE = new TextCache();
@@ -17,13 +18,12 @@ public class TextCache {
     return INSTANCE;
   }
 
-  public void load(String[] texts) {
-    initSet();
-    textSet.addAll(List.of(texts));
-  }
-
   public void add(String str) {
     textSet.add(str);
+  }
+
+  public void add(Stream<String> stream) {
+    textSet.addAll(stream.collect(Collectors.toSet()));
   }
 
   public boolean contains(String str) {
@@ -32,6 +32,10 @@ public class TextCache {
 
   public Set<String> getAll() {
     return Collections.unmodifiableSet(textSet);
+  }
+
+  public int size() {
+    return textSet.size();
   }
 
   private void initSet() {

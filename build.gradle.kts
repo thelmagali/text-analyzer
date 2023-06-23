@@ -17,7 +17,7 @@ repositories {
 val vertxVersion = "4.4.4"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "com.thelmagali.text_analyzer.RestVerticle"
+val mainVerticleName = "com.thelmagali.text_analyzer.verticle.RestVerticle"
 val launcherClassName = "io.vertx.core.Launcher"
 
 val watchForChange = "src/**/*"
