@@ -1,18 +1,24 @@
 package com.thelmagali.text_analyzer.verticle;
 
-import com.thelmagali.text_analyzer.service.CacheService;
+import com.thelmagali.text_analyzer.service.FileService;
+import com.thelmagali.text_analyzer.util.TextCache;
 import io.vertx.core.AbstractVerticle;
 
 public class PeriodicFileUpdateVerticle extends AbstractVerticle {
   @Override
   public void start() {
-    long initialDelay = 30000; // 30 seconds
-    long delay = 10000; // 10 seconds
+    long initialDelay = 0; // 30 seconds
+    long delay = 10000; // 30 seconds
+    var cache = TextCache.getInstance();
     vertx.setPeriodic(initialDelay, delay, handler -> {
       System.out.println("Executing periodic file update...");
-      // Code to execute periodically
-      CacheService.writeCacheToFile(vertx)
-        .onSuccess(_void -> System.out.println("File update completed successfully"));
+      if (cache.isReady()) {
+        var textsToWrite = cache.getAll();
+        FileService.writeToFile(vertx, textsToWrite)
+          .onSuccess(_void -> System.out.println("File update completed successfully"));
+      } else {
+        System.out.println("Skipping the file update. The cache is not ready.");
+      }
     });
   }
 }

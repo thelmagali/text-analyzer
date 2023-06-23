@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TextCache {
   private static final TextCache INSTANCE = new TextCache();
   private final Set<String> textSet;
+  private boolean isReady;
 
   private TextCache() {
     textSet = Collections.newSetFromMap(new ConcurrentHashMap<>());
@@ -14,6 +15,18 @@ public class TextCache {
 
   public static TextCache getInstance() {
     return INSTANCE;
+  }
+
+  public boolean isReady() {
+    return this.isReady;
+  }
+
+  public void setReady(boolean isReady) {
+    this.isReady = isReady;
+  }
+
+  public void load(Set<String> textSet) {
+    this.textSet.addAll(textSet);
   }
 
   public void add(String str) {
