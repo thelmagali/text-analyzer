@@ -1,4 +1,4 @@
-package com.thelmagali.text_analyzer.util;
+package com.thelmagali.text_analyzer.comparator;
 
 import java.util.Comparator;
 

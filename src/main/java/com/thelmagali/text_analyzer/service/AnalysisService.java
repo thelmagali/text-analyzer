@@ -1,8 +1,8 @@
 package com.thelmagali.text_analyzer.service;
 
 import com.thelmagali.text_analyzer.dto.AnalysisDTO;
-import com.thelmagali.text_analyzer.util.LexicalDistanceComparator;
-import com.thelmagali.text_analyzer.util.ValueDistanceComparator;
+import com.thelmagali.text_analyzer.comparator.LexicalDistanceComparator;
+import com.thelmagali.text_analyzer.comparator.ValueDistanceComparator;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import java.util.Objects;

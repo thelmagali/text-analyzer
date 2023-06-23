@@ -1,6 +1,6 @@
-package com.thelmagali.text_analyzer.util;
+package com.thelmagali.text_analyzer.comparator;
 
-import com.thelmagali.text_analyzer.service.LexicalDistanceCalculator;
+import com.thelmagali.text_analyzer.util.LexicalDistance;
 
 public class LexicalDistanceComparator extends TextComparator {
 
@@ -10,6 +10,6 @@ public class LexicalDistanceComparator extends TextComparator {
 
   @Override
   protected int distance(String text1, String text2) {
-    return LexicalDistanceCalculator.distance(text1, text2);
+    return LexicalDistance.distance(text1, text2);
   }
 }

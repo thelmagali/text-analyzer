@@ -1,5 +1,6 @@
 package com.thelmagali.text_analyzer;
 
+import com.thelmagali.text_analyzer.verticle.RestVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;

@@ -1,6 +1,6 @@
-package com.thelmagali.text_analyzer.util;
+package com.thelmagali.text_analyzer.comparator;
 
-import com.thelmagali.text_analyzer.service.ValueDistanceCalculator;
+import com.thelmagali.text_analyzer.util.ValueDistance;
 
 public class ValueDistanceComparator extends TextComparator {
   public ValueDistanceComparator(String referenceString) {
@@ -9,6 +9,6 @@ public class ValueDistanceComparator extends TextComparator {
 
   @Override
   protected int distance(String text1, String text2) {
-    return ValueDistanceCalculator.distance(text1, text2);
+    return ValueDistance.distance(text1, text2);
   }
 }

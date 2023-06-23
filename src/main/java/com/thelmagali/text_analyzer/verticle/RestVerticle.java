@@ -1,4 +1,4 @@
-package com.thelmagali.text_analyzer;
+package com.thelmagali.text_analyzer.verticle;
 
 import com.thelmagali.text_analyzer.service.AnalysisService;
 import io.vertx.core.AbstractVerticle;

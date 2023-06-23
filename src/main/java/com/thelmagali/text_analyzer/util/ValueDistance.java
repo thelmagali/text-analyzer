@@ -1,6 +1,6 @@
-package com.thelmagali.text_analyzer.service;
+package com.thelmagali.text_analyzer.util;
 
-public class ValueDistanceCalculator {
+public class ValueDistance {
   public static int distance(String referenceText, String text) {
     var distance = 0;
     for (int i = 0; i < Math.max(referenceText.length(), text.length()); i++) {

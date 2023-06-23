@@ -1,11 +1,11 @@
-package com.thelmagali.text_analyzer.service;
+package com.thelmagali.text_analyzer.util;
 
 import java.util.Arrays;
 
 /**
  * From: <a href="https://www.geeksforgeeks.org/java-program-to-implement-levenshtein-distance-computing-algorithm/">...</a>
  */
-public class LexicalDistanceCalculator {
+public class LexicalDistance {
 
   public static int distance(String str1, String str2) {
     int[][] dp = new int[str1.length() + 1][str2.length() + 1];
