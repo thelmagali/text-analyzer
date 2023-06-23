@@ -1,5 +1,6 @@
 package com.thelmagali.text_analyzer.util;
 
+import io.vertx.core.impl.ConcurrentHashSet;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +11,7 @@ public class TextCache {
   private boolean isReady;
 
   private TextCache() {
-    textSet = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    textSet = new ConcurrentHashSet<>();
   }
 
   public static TextCache getInstance() {
