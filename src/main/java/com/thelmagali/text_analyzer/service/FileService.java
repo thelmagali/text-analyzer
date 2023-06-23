@@ -13,7 +13,7 @@ public class FileService {
   private static final String fileName = "texts.txt";
 
   public static Future<Set<String>> getTextSet(Vertx vertx) {
-    System.out.println("Starting cache loading");
+    System.out.println("Starting cache loading...");
     final Buffer[] lineBuffer = {Buffer.buffer()};
     Set<String> textSet = new HashSet<>();
     Promise<Set<String>> setPromise = Promise.promise();
@@ -29,7 +29,6 @@ public class FileService {
   }
 
   private static void processChunk(Set<String> textSet, Buffer lineBuffer, Buffer chunk) {
-    System.out.println("Processing a chunk.");
     lineBuffer.appendBuffer(chunk);
 
     while (true) {

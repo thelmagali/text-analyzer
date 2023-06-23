@@ -7,8 +7,8 @@ import io.vertx.core.AbstractVerticle;
 public class PeriodicFileUpdateVerticle extends AbstractVerticle {
   @Override
   public void start() {
-    long initialDelay = 0; // 30 seconds
-    long delay = 10000; // 30 seconds
+    long initialDelay = 30000; // 30 seconds
+    long delay = 30000; // 30 seconds
     var cache = TextCache.getInstance();
     vertx.setPeriodic(initialDelay, delay, handler -> {
       System.out.println("Executing periodic file update...");

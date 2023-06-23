@@ -9,9 +9,15 @@ import java.util.Set;
 public class AnalysisService {
   public static AnalysisDTO analyzeAndSave(String newText) {
     var textCache = TextCache.getInstance();
+
+    if (!textCache.isReady()) {
+      throw new RuntimeException("The cache is not ready yet");
+    }
+
     if (textCache.contains(newText)) {
       return new AnalysisDTO(newText, newText);
     }
+
     var result = analyze(textCache.getAll(), newText);
     textCache.add(newText);
     return result;
