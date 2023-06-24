@@ -3,7 +3,7 @@
 counter=1
 until [ $counter -gt 100000 ]
 do
-uuidgen >> texts.txt
+echo $(uuidgen | head -c 7) >> texts.txt
 ((counter++))
 done
 echo All done
