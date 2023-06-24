@@ -28,6 +28,11 @@ curl --location 'localhost:8080/analyze' \
 }'
 ```
 
+## Populate the file with 100.000 lines for stress tests
+```shell
+./test-gen-script.sh
+```
+
 ## Approach
 - There is a file that acts as a repository of the stored texts. Each text is delimited by a line break.
 - At startup, the application loads all the texts from the file, by chunks, and stores it into an in-memory cache. The cache is implemented internally as a ConcurrentHashSet.
