@@ -29,7 +29,7 @@ curl --location 'localhost:8080/analyze' \
 ```
 
 ## Approach
-There is a file that acts as a repository of the stored texts. Each text is delimited by a line break.
-At startup, the application loads all the texts from the file, by chunks, and stores it into an in-memory cache. The cache is implemented internally as a ConcurrentHashSet.
-Every time a request comes with a text, the text is compared with all the texts from the cache, and lastly it's written into the cache.
-There is a periodic tasks that takes all the contents from the cache and write it into the file.
+- There is a file that acts as a repository of the stored texts. Each text is delimited by a line break.
+- At startup, the application loads all the texts from the file, by chunks, and stores it into an in-memory cache. The cache is implemented internally as a ConcurrentHashSet.
+- Every time a request comes with a text, the text is compared with all the texts from the cache, and lastly it's written into the cache.
+- There is a periodic tasks that takes all the contents from the cache and write it into the file.
