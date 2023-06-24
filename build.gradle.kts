@@ -32,8 +32,14 @@ dependencies {
   implementation("io.vertx:vertx-web")
   // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
   implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+  // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+  implementation("org.slf4j:slf4j-api:2.0.7")
+  // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+  testImplementation("ch.qos.logback:logback-classic:1.4.8")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
+  // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+  implementation("ch.qos.logback:logback-classic:1.4.8")
   runtimeOnly("io.netty:netty-all:4.1.68.Final") // issue with macOS: https://stackoverflow.com/questions/69481239
 }
 
