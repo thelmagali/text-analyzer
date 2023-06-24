@@ -21,17 +21,24 @@ public class AsyncFileBufferedReaderHandlerTest {
 
   private FileSystem fileSystem = new FileSystemImpl((VertxInternal) vertx);
 
+  String[] lines = new String[]{"Hello world", "another line", "another one"};
+
   @Test
-  public void testAsyncFileHandler() throws InterruptedException {
-    Promise<Set<String>> resultPromise = Promise.promise();
-    AsyncFileBufferedReaderHandler myHandler = new AsyncFileBufferedReaderHandler(resultPromise, 1);
-    String[] lines = new String[]{"Hello world", "another line"};
+  void testWithDifferentBufferSizes() throws InterruptedException {
     String fileName = writeFile(lines);
+    testAsyncFileHandler(1, fileName);
+    testAsyncFileHandler(2, fileName);
+    testAsyncFileHandler(10, fileName);
+    testAsyncFileHandler(4096, fileName);
+  }
+
+  private void testAsyncFileHandler(int bufferSize, String fileName) throws InterruptedException {
+    Promise<Set<String>> resultPromise = Promise.promise();
+    AsyncFileBufferedReaderHandler myHandler = new AsyncFileBufferedReaderHandler(resultPromise, bufferSize);
     fileSystem.open(fileName, new OpenOptions().setRead(true), myHandler);
 
-    Thread.sleep(200); // waiting for the future
+    Thread.sleep(1000); // waiting for the future
     resultPromise.future().onSuccess(result -> {
-      System.out.println(result);
       assert (result.size() == lines.length);
       assert (new ArrayList<>(result).containsAll(Arrays.stream(lines).collect(Collectors.toList())));
     });
@@ -41,7 +48,7 @@ public class AsyncFileBufferedReaderHandlerTest {
     var fileName = fileSystem.createTempFileBlocking("prefix", ".txt");
     StringJoiner joiner = new StringJoiner("\n");
     Arrays.stream(lines).forEach(joiner::add);
-    Buffer buffer = Buffer.buffer(joiner.toString());
+    Buffer buffer = Buffer.buffer(joiner + "\n");
     fileSystem.writeFileBlocking(fileName, buffer);
     return fileName;
   }
