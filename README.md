@@ -1,6 +1,6 @@
-# Text-analyzer
+# Text Analyzer
 
-image:https://img.shields.io/badge/vert.x-4.4.4-purple.svg[link="https://vertx.io"]
+![vertx](https://img.shields.io/badge/vert.x-4.4.4-purple.svg)
 
 This application exposes an endpoint which takes a text (not restricted only to 1 word) and compares it with an internal base of texts, returning the closest words both "by value" and "lexicographically".
 
