@@ -40,6 +40,8 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
   // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
   implementation("ch.qos.logback:logback-classic:1.4.8")
+  // https://mvnrepository.com/artifact/org.mockito/mockito-core
+  testImplementation("org.mockito:mockito-core:5.4.0")
   runtimeOnly("io.netty:netty-all:4.1.68.Final") // issue with macOS: https://stackoverflow.com/questions/69481239
 }
 

@@ -12,10 +12,12 @@ import java.util.Set;
 public class FileService {
   private static final String fileName = "texts.txt";
 
+  private static final int CHUNK_SIZE = 4096;
+
   public static Future<Set<String>> getTextSet(Vertx vertx) {
     Promise<Set<String>> promise = Promise.promise();
     vertx.fileSystem()
-      .open(fileName, new OpenOptions().setRead(true), new AsyncFileBufferedReaderHandler(promise));
+      .open(fileName, new OpenOptions().setRead(true), new AsyncFileBufferedReaderHandler(promise, CHUNK_SIZE));
     return promise.future();
   }
 

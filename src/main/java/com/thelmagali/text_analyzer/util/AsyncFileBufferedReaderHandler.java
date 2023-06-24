@@ -10,11 +10,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AsyncFileBufferedReaderHandler implements Handler<AsyncResult<AsyncFile>> {
-  private static final int CHUNK_SIZE = 4096;
+  private final int CHUNK_SIZE;
   private final Set<String> textSet;
   private final Promise<Set<String>> promise;
 
-  public AsyncFileBufferedReaderHandler(Promise<Set<String>> promise) {
+  public AsyncFileBufferedReaderHandler(Promise<Set<String>> promise, int CHUNK_SIZE) {
+    this.CHUNK_SIZE = CHUNK_SIZE;
     this.textSet = new HashSet<>();
     this.promise = promise;
   }
